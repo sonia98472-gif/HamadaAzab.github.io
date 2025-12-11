@@ -1,135 +1,77 @@
-<!DOCTYPE html><html lang="ar" dir="rtl">
+<!DOCTYPE html>
+<html lang="ar">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Hamada Azab - Futuristic Links</title>
-<style>
-    body {
-        margin: 0;
-        padding: 0;
-        font-family: 'Tahoma', sans-serif;
-        background: black;
-        overflow: hidden;
-        text-align: center;
-        color: white;
-    }/* ===== خلفية بارتيكلز 3D مضيئة ===== */
-#particles-js {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cyber Profile</title>
 
-/* ===== صندوق اللينكات ===== */
-.container {
-    margin-top: 120px;
-    width: 90%;
-    max-width: 420px;
-    margin-left: auto;
-    margin-right: auto;
-}
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background: url("background.jpg") no-repeat center center/cover;
+            font-family: sans-serif;
+            direction: rtl;
+        }
 
-h1 {
-    font-size: 28px;
-    margin-bottom: 25px;
-    text-shadow: 0 0 20px cyan;
-    animation: glow 2s infinite alternate;
-}
+        #soundBtn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(0,0,0,0.6);
+            color: #fff;
+            padding: 12px 18px;
+            border-radius: 8px;
+            font-size: 18px;
+            cursor: pointer;
+            border: 1px solid #00c3ff;
+        }
+    </style>
 
-@keyframes glow {
-    from { text-shadow: 0 0 10px cyan; }
-    to { text-shadow: 0 0 25px magenta; }
-}
-
-.btn {
-    display: block;
-    padding: 15px;
-    background: rgba(255, 255, 255, 0.08);
-    margin: 12px 0;
-    border-radius: 14px;
-    backdrop-filter: blur(4px);
-    color: white;
-    text-decoration: none;
-    font-size: 20px;
-    border: 1px solid rgba(255,255,255,0.2);
-    transition: 0.3s;
-    position: relative;
-    overflow: hidden;
-}
-
-.btn:hover {
-    transform: scale(1.06);
-    border-color: cyan;
-    box-shadow: 0 0 20px cyan;
-}
-
-/* تأثير نيون عند اللمس */
-.btn:active::after {
-    content: "";
-    position: absolute;
-    width: 200%;
-    height: 200%;
-    background: radial-gradient(circle, cyan, transparent 40%);
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    opacity: 0.4;
-    animation: pulse 0.5s ease-out;
-}
-
-@keyframes pulse {
-    from { opacity: 0.5; transform: translate(-50%, -50%) scale(0.3); }
-    to { opacity: 0; transform: translate(-50%, -50%) scale(2); }
-}
-
-/* زر الصوت */
-#soundBtn {
-    margin-top: 30px;
-    cursor: pointer;
-    font-size: 18px;
-    text-shadow: 0 0 10px yellow;
-}
-
-</style>
+    <!-- مكتبة الخلفية المتحركة -->
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
 </head>
-<body><!-- ===== بارتيكلز 3D ===== --><div id="particles-js"></div><div class="container">
-    <h1>🔥 Hamada Azab 🔥</h1><a class="btn" href="https://www.facebook.com/share/17dJkFRjzo/">Facebook</a>
-<a class="btn" href="https://youtube.com/@neotranform2?si=c0ZPehuUDdd1eQs3">YouTube</a>
-<a class="btn" href="https://www.tiktok.com/@hamada.azab10">TikTok</a>
-<a class="btn" href="https://whatsapp.com/dl/">WhatsApp</a>
-<a class="btn" href="https://t.me/PD_El3zb">Telegram</a>
-<a class="btn" href="https://www.instagram.com/hamadaazab">Instagram</a>
 
-<div id="soundBtn">🔊 تشغيل / إيقاف الصوت</div>
+<body>
 
-</div><!-- ===== ملف بارتيكلز ===== --><script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script><script>
-// بارتيكلز 3D متحركة قوية
+<!-- زر تشغيل وإيقاف الصوت -->
+<div id="soundBtn">🔇 تشغيل الصوت</div>
+
+<!-- خلفية متحركة -->
+<div id="particles-js"></div>
+
+<script>
 particlesJS("particles-js", {
-  "particles": {
-    "number": {"value": 160},
-    "color": {"value": ["#00ffff", "#ff00ff", "#00ff99"]},
-    "shape": {"type": "circle"},
-    "opacity": {"value": 0.8},
-    "size": {"value": 3},
-    "line_linked": {"enable": false},
-    "move": {"speed": 2, "direction": "none", "out_mode": "bounce"}
-  },
+    "particles": {
+        "number": { "value": 80 },
+        "size": { "value": 3 },
+        "color": { "value": "#00eaff" },
+        "line_linked": { "enable": false },
+        "move": { "speed": 2 }
+    }
 });
+</script>
 
-// تأثيرات صوتية عالية المستوى
-let audio = new Audio("https://cdn.pixabay.com/download/audio/2022/03/15/audio_6d51fdd8f1.mp3?filename=future-beat-20768.mp3");
-audio.loop = true;
+<!-- كود التحكم بالصوت -->
+<audio id="bgSound" autoplay loop>
+    <source src="اغنيه_ مانيش داخل السين(360P)(mp3).mp3" type="audio/mpeg">
+</audio>
 
-document.getElementById("soundBtn").onclick = function() {
+<script>
+let audio = document.getElementById("bgSound");
+let btn = document.getElementById("soundBtn");
+
+btn.onclick = function () {
     if (audio.paused) {
         audio.play();
-        this.innerHTML = "🔈 إيقاف الصوت";
+        btn.innerHTML = "🔊 إيقاف الصوت";
     } else {
         audio.pause();
-        this.innerHTML = "🔊 تشغيل الصوت";
+        btn.innerHTML = "🔇 تشغيل الصوت";
     }
 };
-</script></body>
+</script>
+
+</body>
 </html>

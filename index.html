@@ -2,147 +2,118 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Hamada Azab - Gaming Style</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hamada Azab - Links</title>
 
 <style>
     body {
         margin: 0;
-        font-family: sans-serif;
-        background: #000;
+        padding: 0;
+        font-family: 'Tahoma', sans-serif;
+        background: #0a0f1c;
+        color: white;
+        text-align: center;
         overflow-x: hidden;
     }
 
-    /* خلفية نيون متحركة */
-    .bg {
+    /* خلفية ثلج */
+    .snow {
         position: fixed;
+        top: 0;
+        left: 0;
         width: 100%;
         height: 100%;
-        top: 0; left: 0;
-        background: radial-gradient(circle at center, #0ff3, #000);
-        animation: pulse 5s infinite alternate;
+        pointer-events: none;
+        background-image: url('https://i.ibb.co/0Y0rD6B/snow.gif');
+        opacity: 0.4;
         z-index: -1;
     }
 
-    @keyframes pulse {
-        0% { filter: blur(40px); opacity: 0.6; }
-        100% { filter: blur(70px); opacity: 1; }
-    }
-
-    header {
-        text-align: center;
-        padding: 50px 20px;
-        color: #fff;
+    .container {
+        margin-top: 40px;
     }
 
     h1 {
-        font-size: 40px;
-        text-shadow: 0 0 20px #00eaff;
+        font-size: 32px;
+        margin-bottom: 20px;
+        text-shadow: 0 0 15px #00eaff;
     }
 
-    p {
-        font-size: 18px;
-        color: #ddd;
-    }
-
-    /* زر تواصل */
-    .btn {
-        display: inline-block;
-        padding: 15px 30px;
-        margin-top: 20px;
+    /* أزرار اللينكات */
+    .link-btn {
+        width: 85%;
+        margin: 12px auto;
+        padding: 15px;
+        background: linear-gradient(90deg, #001f3f, #005f9e);
+        color: white;
         font-size: 20px;
-        background: linear-gradient(45deg, #ff003c, #00eaff);
         border-radius: 12px;
-        color: white;
         text-decoration: none;
-        box-shadow: 0 0 20px #00eaff;
+        display: block;
+        box-shadow: 0 0 10px #00eaff;
         transition: 0.2s;
     }
-    .btn:active {
-        transform: scale(0.9);
-        box-shadow: 0 0 40px #ff003c;
+
+    /* حركة عند اللمس */
+    .link-btn:active {
+        transform: scale(0.95);
     }
 
-    /* الأقسام */
-    .box {
-        background: #111;
-        border: 1px solid #333;
-        margin: 20px;
-        padding: 25px;
-        border-radius: 15px;
-        box-shadow: 0 0 15px #00eaff44;
-        color: white;
-        transition: 0.2s;
-    }
-    .box:active {
-        transform: scale(0.97);
-        box-shadow: 0 0 25px #ff003c;
-    }
-
-    /* زر المشاركة */
+    /* أيقونة المشاركة */
     .share-btn {
-        position: fixed;
-        bottom: 25px;
-        left: 25px;
+        margin-top: 25px;
         background: #00eaff;
-        width: 60px;
-        height: 60px;
+        color: black;
+        width: 70px;
+        height: 70px;
         border-radius: 50%;
         display: flex;
         justify-content: center;
         align-items: center;
-        font-size: 26px;
-        color: black;
-        box-shadow: 0 0 20px #00eaff;
+        font-size: 35px;
+        margin-left: auto;
+        margin-right: auto;
+        box-shadow: 0 0 15px white;
         transition: 0.2s;
     }
+
     .share-btn:active {
-        transform: scale(0.8);
-        box-shadow: 0 0 40px #ff003c;
+        transform: scale(0.85);
     }
+
 </style>
 
 </head>
 <body>
 
-<div class="bg"></div>
+<div class="snow"></div>
 
-<header>
+<div class="container">
     <h1>🔥 Hamada Azab 🔥</h1>
-    <p>تصميم فيديوهات – كتابة مقالات – PDF – محتوى كامل احترافي</p>
-    <a class="btn" href="https://wa.me/201234567890">تواصل معي</a>
-</header>
 
-<div class="box">
-    <h2>🎬 تصميم فيديوهات</h2>
-    <p>تحويل النص لفيديو جيمينج احترافي بجودة ممتازة.</p>
-</div>
+    <a class="link-btn" href="https://www.facebook.com/share/17dJkFRjzo/" target="_blank">Facebook</a>
+    <a class="link-btn" href="https://youtube.com/@neotranform2?si=c0ZPehuUDdd1eQs3" target="_blank">YouTube</a>
+    <a class="link-btn" href="https://www.tiktok.com/@hamada.azab10?_r=1&_t=ZS-928P6OnAEjg" target="_blank">TikTok</a>
+    <a class="link-btn" href="https://whatsapp.com/dl/" target="_blank">WhatsApp</a>
+    <a class="link-btn" href="https://t.me/PD_El3zb" target="_blank">Telegram</a>
+    <a class="link-btn" href="https://www.instagram.com/hamadaazab" target="_blank">Instagram</a>
 
-<div class="box">
-    <h2>✍️ كتابة مقالات</h2>
-    <p>مقالات محسّنة للـ SEO جاهزة للنشر.</p>
-</div>
-
-<div class="box">
-    <h2>📄 تصميم PDF</h2>
-    <p>تصميم ملفات PDF احترافي.</p>
-</div>
-
-<!-- زر مشاركة -->
-<div class="share-btn" onclick="share()">
-    ↻
+    <!-- زر المشاركة -->
+    <div class="share-btn" onclick="share()">
+        ⤴️
+    </div>
 </div>
 
 <script>
 function share() {
     if (navigator.share) {
         navigator.share({
-            title: 'Hamada Azab',
-            text: 'تعال شوف خدماتي!',
+            title: "Hamada Azab",
+            text: "تابعني على صفحتي 👍🔥",
             url: window.location.href
         });
     } else {
-        alert("المشاركة غير مدعومة على هذا الجهاز");
+        alert("المشاركة غير مدعومة على جهازك.");
     }
 }
 </script>

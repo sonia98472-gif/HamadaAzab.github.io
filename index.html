@@ -10,112 +10,89 @@
         margin: 0;
         padding: 0;
         font-family: 'Tahoma', sans-serif;
-        background: #0a0f1c;
+        background: black;
         color: white;
         text-align: center;
         overflow-x: hidden;
     }
 
-    /* خلفية ثلج */
-    .snow {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        pointer-events: none;
-        background-image: url('https://i.ibb.co/0Y0rD6B/snow.gif');
-        opacity: 0.4;
-        z-index: -1;
+    /* خلفية نجوم */
+    .stars {
+        width: 2px;
+        height: 2px;
+        background: white;
+        position: absolute;
+        animation: star 3s linear infinite;
+    }
+    @keyframes star {
+        from { transform: translateY(0); }
+        to { transform: translateY(900px); opacity: 0; }
     }
 
-    .container {
-        margin-top: 40px;
-    }
-
+    /* العنوان */
     h1 {
+        margin-top: 40px;
         font-size: 32px;
-        margin-bottom: 20px;
-        text-shadow: 0 0 15px #00eaff;
+        text-shadow: 0 0 15px #0ff;
     }
 
     /* أزرار اللينكات */
     .link-btn {
-        width: 85%;
-        margin: 12px auto;
-        padding: 15px;
-        background: linear-gradient(90deg, #001f3f, #005f9e);
-        color: white;
-        font-size: 20px;
-        border-radius: 12px;
-        text-decoration: none;
         display: block;
-        box-shadow: 0 0 10px #00eaff;
+        margin: 18px auto;
+        width: 85%;
+        padding: 16px;
+        font-size: 20px;
+        border-radius: 50px;
+        text-decoration: none;
+        font-weight: bold;
+        color: white;
+        background: linear-gradient(90deg, red, yellow, lime, cyan, blue, magenta);
+        background-size: 600%;
+        animation: rgbMove 6s linear infinite;
+        box-shadow: 0 0 15px rgba(255,255,255,0.4);
         transition: 0.2s;
     }
 
-    /* حركة عند اللمس */
+    /* يومض عند اللمس */
     .link-btn:active {
-        transform: scale(0.95);
+        box-shadow: 0 0 30px white;
+        transform: scale(1.05);
     }
 
-    /* أيقونة المشاركة */
-    .share-btn {
-        margin-top: 25px;
-        background: #00eaff;
-        color: black;
-        width: 70px;
-        height: 70px;
-        border-radius: 50%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        font-size: 35px;
-        margin-left: auto;
-        margin-right: auto;
-        box-shadow: 0 0 15px white;
-        transition: 0.2s;
+    @keyframes rgbMove {
+        0% { background-position: 0%; }
+        100% { background-position: 600%; }
     }
-
-    .share-btn:active {
-        transform: scale(0.85);
-    }
-
 </style>
-
 </head>
 <body>
 
-<div class="snow"></div>
+<div id="stars-container"></div>
 
-<div class="container">
-    <h1>🔥 Hamada Azab 🔥</h1>
+<h1>🌟 Hamada Azab 🌟</h1>
 
-    <a class="link-btn" href="https://www.facebook.com/share/17dJkFRjzo/" target="_blank">Facebook</a>
-    <a class="link-btn" href="https://youtube.com/@neotranform2?si=c0ZPehuUDdd1eQs3" target="_blank">YouTube</a>
-    <a class="link-btn" href="https://www.tiktok.com/@hamada.azab10?_r=1&_t=ZS-928P6OnAEjg" target="_blank">TikTok</a>
-    <a class="link-btn" href="https://whatsapp.com/dl/" target="_blank">WhatsApp</a>
-    <a class="link-btn" href="https://t.me/PD_El3zb" target="_blank">Telegram</a>
-    <a class="link-btn" href="https://www.instagram.com/hamadaazab" target="_blank">Instagram</a>
-
-    <!-- زر المشاركة -->
-    <div class="share-btn" onclick="share()">
-        ⤴️
-    </div>
-</div>
+<a class="link-btn" href="https://www.facebook.com/share/17dJkFRjzo/">Facebook</a>
+<a class="link-btn" href="https://youtube.com/@neotranform2?si=c0ZPehuUDdd1eQs3">YouTube</a>
+<a class="link-btn" href="https://www.tiktok.com/@hamada.azab10?_r=1&_t=ZS-928P6OnAEjg">TikTok</a>
+<a class="link-btn" href="https://whatsapp.com/dl/">WhatsApp</a>
+<a class="link-btn" href="https://t.me/PD_El3zb">Telegram</a>
+<a class="link-btn" href="https://www.instagram.com/hamadaazab?igsh=cm00MzE3ZGdocGQ=">Instagram</a>
 
 <script>
-function share() {
-    if (navigator.share) {
-        navigator.share({
-            title: "Hamada Azab",
-            text: "تابعني على صفحتي 👍🔥",
-            url: window.location.href
-        });
-    } else {
-        alert("المشاركة غير مدعومة على جهازك.");
+    // توليد نجوم عشوائية
+    function createStars() {
+        const container = document.getElementById('stars-container');
+        for (let i = 0; i < 120; i++) {
+            let star = document.createElement('div');
+            star.classList.add('stars');
+            star.style.left = Math.random() * window.innerWidth + 'px';
+            star.style.top = Math.random() * window.innerHeight + 'px';
+            star.style.animationDuration = (Math.random() * 3 + 2) + 's';
+            container.appendChild(star);
+        }
     }
-}
+    createStars();
 </script>
 
 </body>

@@ -1,114 +1,231 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="ar">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Hamada Azab</title>
 
 <style>
     body {
         margin: 0;
-        font-family: "Cairo", sans-serif;
-        background: url("https://images.unsplash.com/photo-1506784983877-45594efa4cbe?auto=format&fit=crop&w=1400&q=80") no-repeat center center/cover;
-        height: 100vh;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        padding: 0 15px;
+        padding: 0;
+        font-family: sans-serif;
+        direction: rtl;
+        overflow: hidden;
+        background: #000;
+        color: white;
     }
 
-    .container {
+    /* خلفية دخان + تموجات */
+    .bg-smoke {
+        position: fixed;
+        top: 0; left: 0;
+        width: 100%; height: 100%;
+        background: url("https://i.imgur.com/EJ6SnfG.gif") center/cover no-repeat;
+        opacity: 0.35;
+        filter: blur(2px);
+        z-index: -3;
+    }
+
+    /* موجات نيون */
+    .waves {
+        position: fixed;
         width: 100%;
-        max-width: 500px;
-        background: rgba(0, 0, 0, 0.35);
-        backdrop-filter: blur(15px);
-        padding: 30px 20px;
-        border-radius: 25px;
-        box-shadow: 0 0 25px rgba(0,0,0,0.35);
-        text-align: center;
+        height: 100%;
+        top: 0; left: 0;
+        z-index: -2;
+        opacity: 0.35;
     }
 
+    /* الجزيئات */
+    #particles-js {
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        top: 0; left: 0;
+        z-index: -1;
+    }
+
+    /* العنوان */
     h1 {
-        margin-top: 0;
-        font-size: 30px;
-        color: #00eaff;
-        font-weight: 700;
-        text-shadow: 0 0 10px #00eaff;
+        text-align: center;
+        margin-top: 40px;
+        font-size: 42px;
+        font-weight: 800;
+        background: linear-gradient(90deg, #0ff, #09f, #0ff);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        text-transform: uppercase;
+        letter-spacing: 3px;
+        animation: glow 2s infinite alternate;
     }
 
-    .btn {
+    @keyframes glow {
+        from { text-shadow: 0 0 10px #0ff; }
+        to { text-shadow: 0 0 25px #0ff; }
+    }
+
+    /* صندوق الروابط */
+    .links {
+        width: 90%;
+        max-width: 450px;
+        margin: 0 auto;
+        margin-top: 30px;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .link-box {
         display: flex;
         align-items: center;
         gap: 12px;
-        background: rgba(0, 30, 60, 0.8);
+        padding: 14px 18px;
+        background: rgba(255,255,255,0.07);
+        backdrop-filter: blur(10px);
+        border-radius: 14px;
+        border: 1px solid rgba(255,255,255,0.15);
         color: white;
-        padding: 15px;
-        border-radius: 18px;
-        margin: 12px 0;
         text-decoration: none;
         font-size: 20px;
         transition: 0.25s;
-        backdrop-filter: blur(4px);
     }
 
-    .btn:hover {
+    .link-box:hover {
         transform: scale(1.05);
-        background: rgba(0, 50, 90, 0.9);
+        box-shadow: 0 0 15px #0ff;
     }
 
-    .btn img {
-        width: 32px;
-        height: 32px;
+    .icon {
+        font-size: 26px;
     }
 
-    .sound-btn {
-        margin-top: 20px;
-        background: rgba(0, 0, 0, 0.5);
-        padding: 12px;
-        border-radius: 15px;
-        color: #fff;
-        font-size: 18px;
-        display: inline-block;
-        text-decoration: none;
+    /* زر الصوت */
+    #soundBtn {
+        position: fixed;
+        bottom: 20px;
+        left: 20px;
+        background: rgba(255,255,255,0.08);
+        border: 1px solid #0ff;
+        padding: 12px 18px;
+        border-radius: 10px;
+        cursor: pointer;
+        backdrop-filter: blur(10px);
         transition: 0.25s;
     }
-
-    .sound-btn:hover {
-        transform: scale(1.07);
-        background: rgba(0, 0, 0, 0.7);
+    #soundBtn:hover {
+        transform: scale(1.1);
     }
 </style>
-</head>
 
+<script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+
+</head>
 <body>
 
-<div class="container">
+<div class="bg-smoke"></div>
+<canvas class="waves" id="waves"></canvas>
+<div id="particles-js"></div>
 
-    <h1>Hamada Azab</h1>
+<h1>HAMADA AZAB</h1>
 
-    <a class="btn" href="#">
-        <img src="https://i.ibb.co/FWzN1z0/facebook.png">
-        Facebook
+<div class="links">
+
+    <a class="link-box" href="https://www.facebook.com/share/17dJkFRjzo/">
+        <span class="icon">📘</span> Facebook
     </a>
 
-    <a class="btn" href="#">
-        <img src="https://i.ibb.co/zQz0VQf/instagram.png">
-        Instagram
+    <a class="link-box" href="https://youtube.com/@neotranform2">
+        <span class="icon">📺</span> YouTube
     </a>
 
-    <a class="btn" href="#">
-        <img src="https://i.ibb.co/x18ZkMG/whatsapp.png">
-        WhatsApp
+    <a class="link-box" href="https://www.tiktok.com/@hamada.azab10">
+        <span class="icon">🎵</span> TikTok
     </a>
 
-    <a class="btn" href="#">
-        <img src="https://i.ibb.co/7j9dZZL/telegram.png">
-        Telegram
+    <a class="link-box" href="https://www.instagram.com/hamadaazab">
+        <span class="icon">📸</span> Instagram
     </a>
 
-    <a class="sound-btn" href="#">🔇 إيقاف الصوت</a>
+    <a class="link-box" href="https://whatsapp.com/dl/">
+        <span class="icon">💬</span> WhatsApp
+    </a>
+
+    <a class="link-box" href="https://t.me/PD_El3zb">
+        <span class="icon">📨</span> Telegram
+    </a>
 
 </div>
+
+<!-- زر التحكم بالصوت -->
+<div id="soundBtn">🔇 تشغيل الموسيقى</div>
+
+<!-- الصوت -->
+<audio id="bgSound" autoplay loop>
+    <source src="sound.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+let audio = document.getElementById("bgSound");
+let soundBtn = document.getElementById("soundBtn");
+
+soundBtn.onclick = () => {
+    if (audio.paused) {
+        audio.play();
+        soundBtn.innerHTML = "🔊 إيقاف الموسيقى";
+    } else {
+        audio.pause();
+        soundBtn.innerHTML = "🔇 تشغيل الموسيقى";
+    }
+};
+</script>
+
+<!-- جزيئات -->
+<script>
+particlesJS("particles-js", {
+    "particles": {
+        "number": { "value": 120 },
+        "size": { "value": 3 },
+        "color": { "value": "#0ff" },
+        "move": { "speed": 2 },
+        "line_linked": { "enable": false }
+    }
+});
+</script>
+
+<!-- موجات (Canvas Neón Waves) -->
+<script>
+const canvas = document.getElementById("waves");
+const ctx = canvas.getContext("2d");
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+let step = 0;
+function wave() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    step += 0.03;
+
+    for (let i = 0; i < 3; i++) {
+        ctx.beginPath();
+        ctx.moveTo(0, canvas.height / 2);
+
+        for (let x = 0; x < canvas.width; x++) {
+            let y =
+                Math.sin((x + step * 50 + i * 100) * 0.01) * 40 +
+                canvas.height / 2;
+            ctx.lineTo(x, y);
+        }
+
+        ctx.strokeStyle = "rgba(0,255,255," + (0.3 - i * 0.1) + ")";
+        ctx.lineWidth = 2;
+        ctx.stroke();
+    }
+
+    requestAnimationFrame(wave);
+}
+wave();
+</script>
 
 </body>
 </html>

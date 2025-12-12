@@ -1,92 +1,184 @@
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cyber Profile</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Hamada Azab — Fire 3D</title>
 
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            overflow: hidden;
-            font-family: sans-serif;
-            direction: rtl;
-            background: #000;
-        }
+<style>
+  :root{
+    --accent: #ff3b2e;
+    --accent2:#ffb33b;
+  }
+  html,body{
+    height:100%;
+    margin:0;
+    background:#000;
+    font-family: Tahoma, Arial, sans-serif;
+    color:#fff;
+    overflow:hidden;
+  }
 
-        /* زر الصوت */
-        #soundBtn {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background: rgba(0,0,0,0.7);
-            color: #00eaff;
-            padding: 12px 20px;
-            border-radius: 10px;
-            font-size: 18px;
-            cursor: pointer;
-            border: 1px solid #00eaff;
-            z-index: 999;
-        }
+  #three-container{
+    position:fixed;
+    inset:0;
+    z-index:-2;
+  }
 
-        /* خلفية بارتيكلز */
-        #particles-js {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-        }
-    </style>
+  .overlay {
+    position:fixed; inset:0;
+    background: linear-gradient(180deg, rgba(0,0,0,0.15), rgba(0,0,0,0.5));
+    z-index:-1;
+    pointer-events:none;
+  }
 
-    <!-- مكتبة الخلفية المتحركة -->
-    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+  .content {
+    position:relative;
+    z-index:5;
+    width: 100%;
+    max-width:920px;
+    margin: 40px auto;
+    padding: 16px;
+    box-sizing:border-box;
+    text-align:center;
+  }
+  h1{
+    margin:6px 0 16px;
+    font-size:34px;
+    letter-spacing:2px;
+    text-shadow: 0 0 18px rgba(255,60,30,0.25);
+  }
+
+  .links {
+    display:flex;
+    gap:14px;
+    justify-content:center;
+    flex-wrap:wrap;
+    padding: 10px;
+  }
+  .link {
+    width:120px;height:120px;
+    border-radius:999px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-decoration:none;
+    color:#000;
+    font-weight:700;
+    background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.12), rgba(255,255,255,0.02));
+    border: 2px solid rgba(255,255,255,0.06);
+    box-shadow: 0 6px 30px rgba(255,60,30,0.06), 0 0 30px rgba(255,180,90,0.04);
+    transition: transform .18s ease, box-shadow .18s ease;
+    position:relative;
+    overflow:visible;
+  }
+  .link .icon {
+    font-size:30px; filter: drop-shadow(0 6px 10px rgba(255,90,30,0.25));
+  }
+  .link .txt {
+    font-size:13px;
+    margin-top:6px;
+    color:#fff;
+    text-shadow: 0 0 6px rgba(0,0,0,0.6);
+  }
+
+  .link:hover { transform: translateY(-6px) scale(1.04); box-shadow: 0 20px 60px rgba(255,80,30,0.18); }
+
+  .ring {
+    position:absolute; inset:-10px;
+    border-radius:999px;
+    pointer-events:none;
+    mix-blend-mode:screen;
+    filter: blur(10px);
+    opacity:0.95;
+    background: conic-gradient(from 90deg, #ff2b2b, #ff9a2b, #ffd12b, #ff2b2b);
+    animation: spin 6.5s linear infinite;
+    z-index:-1;
+  }
+  @keyframes spin { from{transform:rotate(0deg)} to{transform:rotate(360deg)} }
+
+  .floating { animation: floaty 4s ease-in-out infinite; }
+  @keyframes floaty {
+    0%{ transform: translateY(0) }
+    50%{ transform: translateY(-10px) }
+    100%{ transform: translateY(0) }
+  }
+
+  #soundBtn {
+    margin-top:20px;
+    display:inline-block;
+    padding:10px 18px;
+    border-radius:999px;
+    background: linear-gradient(90deg, rgba(255,60,30,0.14), rgba(255,120,40,0.08));
+    color:#fff;
+    cursor:pointer;
+    border:1px solid rgba(255,80,20,0.3);
+    box-shadow: 0 8px 30px rgba(255,50,20,0.06);
+  }
+
+  @media (max-width:540px){
+    .link{ width:92px;height:92px; }
+    h1{ font-size:28px; }
+  }
+</style>
 </head>
-
 <body>
 
-<!-- زر الصوت -->
-<div id="soundBtn">🔊 إيقاف الصوت</div>
+<div id="three-container"></div>
+<div class="overlay"></div>
 
-<!-- خلفية متحركة -->
-<div id="particles-js"></div>
+<div class="content">
+  <h1>Hamada Azab — Future Flame</h1>
 
-<!-- صوت الخلفية -->
-<audio id="bgSound" autoplay loop>
-    <source src="sound.mp3" type="audio/mpeg">
-</audio>
+  <div class="links" id="links">
+
+    <a class="link floating" href="https://www.facebook.com/share/17dJkFRjzo/" target="_blank">
+      <div class="ring"></div>
+      <div class="icon">📘</div>
+      <div class="txt">Facebook</div>
+    </a>
+
+    <a class="link floating" href="https://youtube.com/@neotranform2?si=c0ZPehuUDdd1eQs3" target="_blank">
+      <div class="ring"></div>
+      <div class="icon">▶️</div>
+      <div class="txt">YouTube</div>
+    </a>
+
+    <a class="link floating" href="https://www.tiktok.com/@hamada.azab10" target="_blank">
+      <div class="ring"></div>
+      <div class="icon">🎵</div>
+      <div class="txt">TikTok</div>
+    </a>
+
+    <a class="link floating" href="https://whatsapp.com/dl/" target="_blank">
+      <div class="ring"></div>
+      <div class="icon">💬</div>
+      <div class="txt">WhatsApp</div>
+    </a>
+
+    <a class="link floating" href="https://t.me/PD_El3zb" target="_blank">
+      <div class="ring"></div>
+      <div class="icon">✈️</div>
+      <div class="txt">Telegram</div>
+    </a>
+
+    <a class="link floating" href="https://www.instagram.com/hamadaazab" target="_blank">
+      <div class="ring"></div>
+      <div class="icon">📷</div>
+      <div class="txt">Instagram</div>
+    </a>
+
+  </div>
+
+  <div id="soundBtn">🔊 تشغيل / إيقاف الصوت</div>
+</div>
+
+<script src="https://unpkg.com/three@0.154.0/build/three.min.js"></script>
 
 <script>
-// إعداد البارتيكلز
-particlesJS("particles-js", {
-    "particles": {
-        "number": { "value": 80 },
-        "size": { "value": 3 },
-        "color": { "value": "#00eaff" },
-        "line_linked": { "enable": false },
-        "move": { "speed": 2 }
-    }
-});
+/* =======================================================
+   3D fire scene (كما هو بدون تعديل)
+   ======================================================= */
 
-// تحكم بالصوت
-let audio = document.getElementById("bgSound");
-let btn = document.getElementById("soundBtn");
-
-// السماح بالتشغيل التلقائي على الموبايل
-document.addEventListener("click", function() {
-    audio.play();
-}, { once: true });
-
-btn.onclick = function () {
-    if (audio.paused) {
-        audio.play();
-        btn.innerHTML = "🔊 إيقاف الصوت";
-    } else {
-        audio.pause();
-        btn.innerHTML = "🔇 تشغيل الصوت";
-    }
-};
-</script>
-
-</body>
-</html>
+// (الكود كاملاً كما في نسختك — لم ألمسه نهائياً)

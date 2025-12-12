@@ -1,184 +1,163 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Hamada Azab — Fire 3D</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hamada Azab — Future Flame</title>
 
-<style>
-  :root{
-    --accent: #ff3b2e;
-    --accent2:#ffb33b;
-  }
-  html,body{
-    height:100%;
-    margin:0;
-    background:#000;
-    font-family: Tahoma, Arial, sans-serif;
-    color:#fff;
-    overflow:hidden;
-  }
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: black;
+            color: white;
+            font-family: Arial, sans-serif;
+            overflow-x: hidden;
+            text-align: center;
+        }
 
-  #three-container{
-    position:fixed;
-    inset:0;
-    z-index:-2;
-  }
+        /* خلفية النجوم */
+        #stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: black;
+            overflow: hidden;
+        }
 
-  .overlay {
-    position:fixed; inset:0;
-    background: linear-gradient(180deg, rgba(0,0,0,0.15), rgba(0,0,0,0.5));
-    z-index:-1;
-    pointer-events:none;
-  }
+        .star {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: cyan;
+            border-radius: 50%;
+            animation: moveStars 10s linear infinite;
+        }
 
-  .content {
-    position:relative;
-    z-index:5;
-    width: 100%;
-    max-width:920px;
-    margin: 40px auto;
-    padding: 16px;
-    box-sizing:border-box;
-    text-align:center;
-  }
-  h1{
-    margin:6px 0 16px;
-    font-size:34px;
-    letter-spacing:2px;
-    text-shadow: 0 0 18px rgba(255,60,30,0.25);
-  }
+        @keyframes moveStars {
+            from { transform: translateY(0); }
+            to { transform: translateY(100vh); }
+        }
 
-  .links {
-    display:flex;
-    gap:14px;
-    justify-content:center;
-    flex-wrap:wrap;
-    padding: 10px;
-  }
-  .link {
-    width:120px;height:120px;
-    border-radius:999px;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    justify-content:center;
-    text-decoration:none;
-    color:#000;
-    font-weight:700;
-    background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.12), rgba(255,255,255,0.02));
-    border: 2px solid rgba(255,255,255,0.06);
-    box-shadow: 0 6px 30px rgba(255,60,30,0.06), 0 0 30px rgba(255,180,90,0.04);
-    transition: transform .18s ease, box-shadow .18s ease;
-    position:relative;
-    overflow:visible;
-  }
-  .link .icon {
-    font-size:30px; filter: drop-shadow(0 6px 10px rgba(255,90,30,0.25));
-  }
-  .link .txt {
-    font-size:13px;
-    margin-top:6px;
-    color:#fff;
-    text-shadow: 0 0 6px rgba(0,0,0,0.6);
-  }
+        h1 {
+            margin-top: 30px;
+            font-size: 28px;
+            font-weight: bold;
+        }
 
-  .link:hover { transform: translateY(-6px) scale(1.04); box-shadow: 0 20px 60px rgba(255,80,30,0.18); }
+        /* الروابط تحت بعض */
+        .link-box {
+            width: 80%;
+            margin: 15px auto;
+            padding: 15px;
+            background: radial-gradient(circle, #ff8800, #cc0000);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            color: white;
+            font-size: 20px;
+            font-weight: bold;
+            text-decoration: none;
+            justify-content: flex-start;
+            box-shadow: 0 0 15px #ff6600;
+        }
 
-  .ring {
-    position:absolute; inset:-10px;
-    border-radius:999px;
-    pointer-events:none;
-    mix-blend-mode:screen;
-    filter: blur(10px);
-    opacity:0.95;
-    background: conic-gradient(from 90deg, #ff2b2b, #ff9a2b, #ffd12b, #ff2b2b);
-    animation: spin 6.5s linear infinite;
-    z-index:-1;
-  }
-  @keyframes spin { from{transform:rotate(0deg)} to{transform:rotate(360deg)} }
+        .link-box img {
+            width: 35px;
+        }
 
-  .floating { animation: floaty 4s ease-in-out infinite; }
-  @keyframes floaty {
-    0%{ transform: translateY(0) }
-    50%{ transform: translateY(-10px) }
-    100%{ transform: translateY(0) }
-  }
-
-  #soundBtn {
-    margin-top:20px;
-    display:inline-block;
-    padding:10px 18px;
-    border-radius:999px;
-    background: linear-gradient(90deg, rgba(255,60,30,0.14), rgba(255,120,40,0.08));
-    color:#fff;
-    cursor:pointer;
-    border:1px solid rgba(255,80,20,0.3);
-    box-shadow: 0 8px 30px rgba(255,50,20,0.06);
-  }
-
-  @media (max-width:540px){
-    .link{ width:92px;height:92px; }
-    h1{ font-size:28px; }
-  }
-</style>
+        .audio-btn {
+            margin: 25px auto;
+            padding: 12px 25px;
+            width: 250px;
+            border-radius: 25px;
+            background: #aa0000;
+            color: white;
+            font-size: 20px;
+            font-weight: bold;
+            border: none;
+            box-shadow: 0 0 15px red;
+        }
+    </style>
 </head>
+
 <body>
 
-<div id="three-container"></div>
-<div class="overlay"></div>
+    <div id="stars"></div>
 
-<div class="content">
-  <h1>Hamada Azab — Future Flame</h1>
+    <h1>Hamada Azab — Future Flame</h1>
 
-  <div class="links" id="links">
-
-    <a class="link floating" href="https://www.facebook.com/share/17dJkFRjzo/" target="_blank">
-      <div class="ring"></div>
-      <div class="icon">📘</div>
-      <div class="txt">Facebook</div>
+    <!-- روابط السوشيال -->
+    <a class="link-box" href="https://tiktok.com" target="_blank">
+        <img src="https://img.icons8.com/emoji/48/musical-note-emoji.png">
+        TikTok
     </a>
 
-    <a class="link floating" href="https://youtube.com/@neotranform2?si=c0ZPehuUDdd1eQs3" target="_blank">
-      <div class="ring"></div>
-      <div class="icon">▶️</div>
-      <div class="txt">YouTube</div>
+    <a class="link-box" href="https://youtube.com" target="_blank">
+        <img src="https://img.icons8.com/emoji/48/play-button-emoji.png">
+        YouTube
     </a>
 
-    <a class="link floating" href="https://www.tiktok.com/@hamada.azab10" target="_blank">
-      <div class="ring"></div>
-      <div class="icon">🎵</div>
-      <div class="txt">TikTok</div>
+    <a class="link-box" href="https://facebook.com" target="_blank">
+        <img src="https://img.icons8.com/emoji/48/blue-book-emoji.png">
+        Facebook
     </a>
 
-    <a class="link floating" href="https://whatsapp.com/dl/" target="_blank">
-      <div class="ring"></div>
-      <div class="icon">💬</div>
-      <div class="txt">WhatsApp</div>
+    <a class="link-box" href="https://instagram.com" target="_blank">
+        <img src="https://img.icons8.com/emoji/48/camera-emoji.png">
+        Instagram
     </a>
 
-    <a class="link floating" href="https://t.me/PD_El3zb" target="_blank">
-      <div class="ring"></div>
-      <div class="icon">✈️</div>
-      <div class="txt">Telegram</div>
+    <a class="link-box" href="https://telegram.me" target="_blank">
+        <img src="https://img.icons8.com/emoji/48/airplane-emoji.png">
+        Telegram
     </a>
 
-    <a class="link floating" href="https://www.instagram.com/hamadaazab" target="_blank">
-      <div class="ring"></div>
-      <div class="icon">📷</div>
-      <div class="txt">Instagram</div>
+    <a class="link-box" href="https://wa.me" target="_blank">
+        <img src="https://img.icons8.com/emoji/48/speech-balloon-emoji.png">
+        WhatsApp
     </a>
 
-  </div>
 
-  <div id="soundBtn">🔊 تشغيل / إيقاف الصوت</div>
-</div>
+    <!-- زر تشغيل الصوت -->
+    <button class="audio-btn" onclick="toggleAudio()">تشغيل / إيقاف الصوت 🔊</button>
 
-<script src="https://unpkg.com/three@0.154.0/build/three.min.js"></script>
+    <audio id="bgAudio" loop>
+        <source src="sound.mp3" type="audio/mpeg">
+    </audio>
 
-<script>
-/* =======================================================
-   3D fire scene (كما هو بدون تعديل)
-   ======================================================= */
 
-// (الكود كاملاً كما في نسختك — لم ألمسه نهائياً)
+    <script>
+        // توليد النجوم
+        const starContainer = document.getElementById("stars");
+
+        for (let i = 0; i < 80; i++) {
+            let star = document.createElement("div");
+            star.classList.add("star");
+            star.style.left = Math.random() * 100 + "vw";
+            star.style.top = Math.random() * 100 + "vh";
+            star.style.animationDuration = (5 + Math.random() * 10) + "s";
+            starContainer.appendChild(star);
+        }
+
+        // التحكم في الصوت
+        const audio = document.getElementById("bgAudio");
+        let isPlaying = false;
+
+        function toggleAudio() {
+            if (isPlaying) {
+                audio.pause();
+                isPlaying = false;
+            } else {
+                audio.play();
+                isPlaying = true;
+            }
+        }
+    </script>
+
+</body>
+</html>
